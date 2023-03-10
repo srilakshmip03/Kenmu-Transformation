@@ -1,8 +1,8 @@
 ﻿# things to fix
-    # how to make big screen with title "act one"
-    # how to animate
+    # figure out linear command
     # why is sister floating
         # why is positioning such a PAIN
+    # what's going on with the menu
 
 # The script of the game goes in this file.
 
@@ -40,7 +40,7 @@ label start:
 
     jump house
 
-
+# for a big screen with the name "ACT I", just make a file and set that as the first scene.
 label house:
 
     scene bg home
@@ -67,19 +67,23 @@ label house:
             jump parent
 
 label outside:
+
     scene bg hills
 
     show local
 
-    l "Expository information or something."
+    l "Expository information."
 
     menu:
-        "Speak with parent now." if speak == "outside": 
+        "Speak with parent now.":
             jump parent
+        "Do chores now.":
+            jump chores
         "Patrol the land.":
             jump patrol
 
 label chores:
+
     scene bg home
 
     show sister:
@@ -90,12 +94,15 @@ label chores:
     y "Interesting response."
 
     menu:
-        "Speak with the person outside now." if speak == "family":
+        "Speak with parent now.":
+            jump parent
+        "Speak with the person outside now."
             jump outside
         "Patrol the land.":
             jump patrol
     
 label parent:
+
     scene bg home
 
     show father:
@@ -106,19 +113,21 @@ label parent:
     y "Interesting response."
 
     menu:
-        "Speak with the person outside now." if speak == "family":
+        "Do chores now.":
+            jump chores
+        "Speak with the person outside."
             jump outside
         "Patrol the land.":
             jump patrol
 
 label patrol:
+
     scene bg hills
 
-    show angry
+    show angry with moveinleft
 
     r "Still refusing to leave us alone?"
-    r "Soon the emperor will recognize our claims."
-    r "Until then..."
+    r "Soon the emperor will recognize our claims!"
 
     show bg hills with hpunch
 
@@ -134,14 +143,30 @@ label patrol:
     y "Telling father what happened"
     s "I saw it happen!"
     f "..."
-    f "You need to defend our honor. Head to the capital as soon as you can."
+    f "You need to defend our family. Head to the capital as soon as you can."
     f "Make this right."
 
-    scene bg homeNight
-
-    # this could be a good point to add a cool mechanic, idk what yet
+    # this doesn't have to be a different image, maybe just a filter over the daytime house scene
+    scene night with dissolve
 
     y "Freaking out about the journey that lies ahead."
+
+    scene bg home with dissolve
+
+    show father with moveinright
+
+    f "Emotional moment sending you off to Kyoto."
+    f "Here are some provisions as well as my beloved horse."
+
+    show father at right
+
+    y "Emotional response."
+
+    jump journey
+
+label journey
+
+    
 
 # end game
 return
