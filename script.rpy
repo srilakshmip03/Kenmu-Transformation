@@ -1,25 +1,44 @@
 ﻿# things to fix
     # figure out linear command
-    # why is sister floating
+    ## why is sister floating
         # why is positioning such a PAIN
-    # what's going on with the menu
+    # what's going on with the menu (chores/person/parent)
+    # CHARACTER CUSTOMIZATION
+        # image map for this? - current goal
+
 
 # The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-##### rename these ####
+# main
 define y = Character("You")
 define f = Character("Father")
 define s = Character("Sister")
 define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
 define l = Character("Local")
 
+# minor
+define hostage = DynamicCharacter("help")
+
+# create traits
+default martial = 0
+default charisma = 30
+default erudition = 0
+default patience = 0
+
+### reputations ###
+
+screen actOne():
+    text "Act One":
+        align(0.5, 0.5)
+
+init python:
+
+    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('actOne')))
+
+### Add customization screen here ###
 
 # The game starts here.
-# starting scene, probs prologue
-label start:
+label start():
 
     scene bg hills
 
@@ -40,8 +59,9 @@ label start:
 
     jump house
 
-# for a big screen with the name "ACT I", just make a file and set that as the first scene.
-label house:
+label house():
+
+    show screen actOne()
 
     scene bg home
 
@@ -66,13 +86,16 @@ label house:
             $ speak = "parent"
             jump parent
 
-label outside:
+
+label outside():
 
     scene bg hills
 
     show local
 
     l "Expository information."
+
+    y "Okay cool thanks"
 
     menu:
         "Speak with parent now.":
@@ -82,7 +105,7 @@ label outside:
         "Patrol the land.":
             jump patrol
 
-label chores:
+label chores():
 
     scene bg home
 
@@ -96,12 +119,12 @@ label chores:
     menu:
         "Speak with parent now.":
             jump parent
-        "Speak with the person outside now."
+        "Speak with the person outside now.":
             jump outside
         "Patrol the land.":
             jump patrol
     
-label parent:
+label parent():
 
     scene bg home
 
@@ -115,12 +138,12 @@ label parent:
     menu:
         "Do chores now.":
             jump chores
-        "Speak with the person outside."
+        "Speak with the person outside.":
             jump outside
         "Patrol the land.":
             jump patrol
 
-label patrol:
+label patrol():
 
     scene bg hills
 
@@ -158,15 +181,86 @@ label patrol:
     f "Emotional moment sending you off to Kyoto."
     f "Here are some provisions as well as my beloved horse."
 
-    show father at right
-
     y "Emotional response."
 
     jump journey
 
-label journey
+label journey():
 
+    scene bg hills
+
+    y "On the journey"
+
+    show local with hpunch:
+        zoom 1.5
+
+    $ help = "???"
+    hostage "Help! I'm being attacked!"
+
+    menu:
+        "Fight the akuto." if martial >= 10:
+            jump fightWin
+
+        "Fight the akuto." if martial < 10:
+            jump fightLose
+
+        "Strategize." if charisma >= 10:
+            jump stratWin
+
+        "Strategize." if charisma < 10:
+            jump stratLose
+
+label fightWin():
+
+    scene bg hills
+    $ martial += 5
     
+    hostage "Thank you! My name is ..."
+    $ help = "Hostage"
+
+    $ loss = False
+    jump onwards
+
+label fightLose():
+
+    scene bg hills
+
+    "You weren't strong enough to fend off the akuto."
+    "You've suffered grave injuries and cannot continue the journey to Kyoto."
+
+    scene black with dissolve
+
+    return
+
+label stratWin():
+
+    scene bg hills
+    $ charisma += 5
+
+    y "Some charismatic stuff to make the akuto fall back."
+    hostage "Thank you! My name is ..."
+
+    $ help = "Hostage"
+
+    $ loss = False
+    jump onwards
+
+label stratLose():
+
+    scene bg hills
+    $ charisma -= 5
+
+    "Your negotiation tactics were unsuccessful."
+    "The hostage's group emerges from the woods and takes over the situation."
+    "They successfully fend off the akuto, but some injuries are sustained."
+
+    $ loss = True
+    jump onwards
+
+label onwards():
+    if not loss:
+        hostage "Information"
+        hostage "There's this party happening in Kyoto, you should come with us."
 
 # end game
 return
