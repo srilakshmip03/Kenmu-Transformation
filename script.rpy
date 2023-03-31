@@ -79,6 +79,7 @@ label house():
 
     scene bg home
 
+    # local is the brother
     show local at left with moveinleft
 
     bro "You're finally awake!"
@@ -106,6 +107,69 @@ label house():
     dad  "Please sit and stop fiddling with your robe."
 
     show black with fade
+    # play sound "cutlery.mp3"
 
+    scene bg home
+
+    show father
+    show sister at left
+    show local at right with moveinright
+
+    dad "Merchant displayed a new supply yesterday."
+
+    mc "Oh?"
+
+    sis "So interesting."
+
+    dad "New shipment of waraji for this one."
+
+    bro "Yes!!! Mine are getting all damp and icky. When will I be able to run on solid ground again?"
+
+    sis "It IS solid ground! You just need to wait for the cold, then it’ll feel like you can actually breathe and walk again."
+
+    dad "Southern weather works differently. Village works tirelessly every year to make sure everyone's needs are being met"
+    dad "As a matter of fact…"
+    
+    mc "It shouldn’t be too late in the day for us to lend our hands. Our FOCUSED hands."
+
+    dad "Indeed. I know fisherman would need assistance by the river. What a calming presence from someone under such stress."
+    dad "Food will always take priority."
+    dad "Of course our friend by the field could always use some help."
+
+    sis "Archer has always been so busy! Do you really think he’d allow me to practice today?!"
+
+    dad "Practice sharpening arrows, most definitely. But then again, I’m sure he’d enjoy some shooting company."
+
+    mc "And I’m sure that with such a recent shipment of goods, merchant would need help organizing and documenting."
+
+    dad "What a long year, this is. Soldiers need armor and weapons if they are to make it through."
+
+    mc "Then let us not be wasteful of this daylight."
+
+    hide father with moveoutleft
+    hide sister with moveoutleft
+    hide local with moveoutright
+
+    menu:
+        "What should I do today?"
+
+        "Help the fisherman.":
+            jump help_fisherman
+
+        "Sharpen arrows with the archer.":
+            jump help_archer
+
+        "Organize shipments with the merchant.":
+            jump help_merchant
+
+label help_fisherman():
+    return
+
+label help_archer():
+    return
+
+label help_merchant():
+    return
+    
 # end game
 return
