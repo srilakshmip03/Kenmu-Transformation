@@ -10,14 +10,18 @@
 # The script of the game goes in this file.
 
 # main
-define y = Character("You")
-define f = Character("Father")
-define s = Character("Sister")
-define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
-define l = Character("Local")
+define mc = Character("Main Character")
+define sis = Character("Sister")
+define bro = Character("Brother")
+define dad = Character("Father")
+define archer = Character("Old Wise Archer Dude")
+define fish = Character("Fisherman")
+define merch = Character("Merchant")
 
-# minor
 define hostage = DynamicCharacter("help")
+
+define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
+
 
 # create traits
 default martial = 0
@@ -28,6 +32,7 @@ default patience = 0
 ### reputations ###
 
 screen actOne():
+
     text "Act One":
         align(0.5, 0.5)
 
@@ -61,206 +66,46 @@ label start():
 
 label house():
 
+    show black
     show screen actOne()
+    pause
+
+    hide screen actOne with fade
+    scene bg night with fade
+
+    "*Knock knock*"
+
+    mc "I guess it's time to get up."
 
     scene bg home
 
-    show sister:
-        zoom 2.0
+    show local at left with moveinleft
 
-    y "Good morning!"
-    s "Hey there, ready to start the day? Someone outside wanted to speak with you."
+    bro "You're finally awake!"
 
-    menu:
-        "I want to..."
+    show father at right with moveinright
 
-        "Meet with the person outside.":
-            $ speak = "outside"
-            jump outside
-        
-        "Do chores with sister.":
-            $ speak = "chores"
-            jump chores
+    dad "Seat yourself, please."
 
-        "Talk to parent.":
-            $ speak = "parent"
-            jump parent
+    dad "You're awake."
 
+    mc "Yes, Father, good morning."
 
-label outside():
+    "Is there a reason the sun's so high and I'm still in my sleeping gown?"
 
-    scene bg hills
+    hide local with moveoutleft
 
-    show local
+    show sister with moveinleft
 
-    l "Expository information."
+    sis "I’m starving! Why does he get to sleep in and we have to wait for our meal??"
 
-    y "Okay cool thanks"
+    dad "These are delicate times; you never know when you’d need to keep your strength up."
+    dad "Collecting that strength during resting hours is more important than you know."
 
-    menu:
-        "Speak with parent now.":
-            jump parent
-        "Do chores now.":
-            jump chores
-        "Patrol the land.":
-            jump patrol
+    dad "And each of you had the chance to do so this morning."
+    dad  "Please sit and stop fiddling with your robe."
 
-label chores():
-
-    scene bg home
-
-    show sister:
-        zoom 2.0
-
-    s "More information here."
-
-    y "Interesting response."
-
-    menu:
-        "Speak with parent now.":
-            jump parent
-        "Speak with the person outside now.":
-            jump outside
-        "Patrol the land.":
-            jump patrol
-    
-label parent():
-
-    scene bg home
-
-    show father:
-        zoom 1.5
-
-    f "More information here."
-
-    y "Interesting response."
-
-    menu:
-        "Do chores now.":
-            jump chores
-        "Speak with the person outside.":
-            jump outside
-        "Patrol the land.":
-            jump patrol
-
-label patrol():
-
-    scene bg hills
-
-    show angry with moveinleft
-
-    r "Still refusing to leave us alone?"
-    r "Soon the emperor will recognize our claims!"
-
-    show bg hills with hpunch
-
-    r "We will regain our honor."
-
-    scene bg home
-
-    show father at left:
-        zoom 1.5
-    show sister at right:
-        zoom 2.0
-
-    y "Telling father what happened"
-    s "I saw it happen!"
-    f "..."
-    f "You need to defend our family. Head to the capital as soon as you can."
-    f "Make this right."
-
-    # this doesn't have to be a different image, maybe just a filter over the daytime house scene
-    scene night with dissolve
-
-    y "Freaking out about the journey that lies ahead."
-
-    scene bg home with dissolve
-
-    show father with moveinright
-
-    f "Emotional moment sending you off to Kyoto."
-    f "Here are some provisions as well as my beloved horse."
-
-    y "Emotional response."
-
-    jump journey
-
-label journey():
-
-    scene bg hills
-
-    y "On the journey"
-
-    show local with hpunch:
-        zoom 1.5
-
-    $ help = "???"
-    hostage "Help! I'm being attacked!"
-
-    menu:
-        "Fight the akuto." if martial >= 10:
-            jump fightWin
-
-        "Fight the akuto." if martial < 10:
-            jump fightLose
-
-        "Strategize." if charisma >= 10:
-            jump stratWin
-
-        "Strategize." if charisma < 10:
-            jump stratLose
-
-label fightWin():
-
-    scene bg hills
-    $ martial += 5
-    
-    hostage "Thank you! My name is ..."
-    $ help = "Hostage"
-
-    $ loss = False
-    jump onwards
-
-label fightLose():
-
-    scene bg hills
-
-    "You weren't strong enough to fend off the akuto."
-    "You've suffered grave injuries and cannot continue the journey to Kyoto."
-
-    scene black with dissolve
-
-    return
-
-label stratWin():
-
-    scene bg hills
-    $ charisma += 5
-
-    y "Some charismatic stuff to make the akuto fall back."
-    hostage "Thank you! My name is ..."
-
-    $ help = "Hostage"
-
-    $ loss = False
-    jump onwards
-
-label stratLose():
-
-    scene bg hills
-    $ charisma -= 5
-
-    "Your negotiation tactics were unsuccessful."
-    "The hostage's group emerges from the woods and takes over the situation."
-    "They successfully fend off the akuto, but some injuries are sustained."
-
-    $ loss = True
-    jump onwards
-
-label onwards():
-    if not loss:
-        hostage "Information"
-        hostage "There's this party happening in Kyoto, you should come with us."
+    show black with fade
 
 # end game
 return
