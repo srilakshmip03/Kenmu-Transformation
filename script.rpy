@@ -1,13 +1,4 @@
-﻿# things to fix
-    # figure out linear command
-    ## why is sister floating
-        # why is positioning such a PAIN
-    # what's going on with the menu (chores/person/parent)
-    # CHARACTER CUSTOMIZATION
-        # image map for this? - current goal
-
-
-# The script of the game goes in this file.
+﻿# The script of the game goes in this file.
 
 # main
 define mc = Character("Main Character")
@@ -22,28 +13,65 @@ define hostage = DynamicCharacter("help")
 
 define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
 
-
-# create traits
-default martial = 0
-default charisma = 30
-default erudition = 0
-default patience = 0
-
 ### reputations ###
 
-screen actOne():
+### character select screen ###
+# Prepare the list:
+define characters = [
+    {
+        "name": "Choice One",
+        "picture": "images/choiceone.jpeg"
+    },
+    {
+        "name": "Choice Two",
+        "picture": "images/choicetwo.jpeg"
+    },
+    {
+        "name": "Choice Three",
+        "picture": "images/choiceone.jpeg"
+    },
+    {
+        "name": "Choice Four",
+        "picture": "images/choicetwo.jpeg"
+    }
+]
 
+## TO DO: reputation and traits ##
+# Define the screen to select characters:
+screen character_select():
+    frame:
+        xfill True
+        yfill True
+        background "#ffddb7"
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 9            
+            # Iterate through the list:
+            for butt in characters:
+                button:
+                    size_group "character_buttons"
+                    background "#2d2522"
+                    hover_background "#963"
+                    vbox:
+                        add butt["picture"]
+                        label butt["name"]:
+                            text_size 40
+                            text_color "#FFF"
+                    action Return(butt["name"])
+
+
+screen actOne:
     text "Act One":
         align(0.5, 0.5)
 
 init python:
-
     config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('actOne')))
-
-### Add customization screen here ###
 
 # The game starts here.
 label start():
+    call screen character_select
+    "You chose [_return]"
 
     scene bg hills
 
@@ -62,12 +90,14 @@ label start():
 
     "Shortly after these events..."
 
-    jump house
+    jump chrsel
+
+
 
 label house():
 
     show black
-    show screen actOne()
+    show screen actOne
     pause
 
     hide screen actOne with fade
