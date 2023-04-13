@@ -13,7 +13,14 @@ define hostage = DynamicCharacter("help")
 
 define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
 
-### reputations ###
+### reputation variables ###
+
+
+### skill variables ###
+default patience = 0
+default martial = 0
+default erudition = 0
+
 
 ### character select screen ###
 # Prepare the list:
@@ -36,7 +43,6 @@ define characters = [
     }
 ]
 
-## TO DO: reputation and traits ##
 # Define the screen to select characters:
 screen character_select():
     frame:
@@ -71,7 +77,14 @@ init python:
 # The game starts here.
 label start():
     call screen character_select
-    "You chose [_return]"
+    if _return == "Choice One":
+        $patience += 1
+        $martial = 0
+    else:
+        $patience += 5
+        $martial += 2
+
+    "You chose [_return], your patience stat is [patience] and your martial stat is [martial]."
 
     scene bg hills
 
@@ -90,9 +103,6 @@ label start():
 
     "Shortly after these events..."
 
-    jump chrsel
-
-
 
 label house():
 
@@ -109,8 +119,7 @@ label house():
 
     scene bg home
 
-    # local is the brother
-    show local at left with moveinleft
+    show brother at left with moveinleft
 
     bro "You're finally awake!"
 
@@ -124,7 +133,7 @@ label house():
 
     "Is there a reason the sun's so high and I'm still in my sleeping gown?"
 
-    hide local with moveoutleft
+    hide brother with moveoutleft
 
     show sister with moveinleft
 
@@ -143,7 +152,7 @@ label house():
 
     show father
     show sister at left
-    show local at right with moveinright
+    show brother at right with moveinright
 
     dad "Merchant displayed a new supply yesterday."
 
@@ -178,7 +187,7 @@ label house():
 
     hide father with moveoutleft
     hide sister with moveoutleft
-    hide local with moveoutright
+    hide brother with moveoutright
 
     menu:
         "What should I do today?"
