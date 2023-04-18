@@ -14,7 +14,7 @@ define arch = Character("Suekuni")
 define sold = Character("Soldier")
 define osold = Character("Other Soldier")
 
-define r = Character("Rival", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
+define rival = Character("Shigefumi", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
 
 ### reputation variables ###
 default fisherman = 0
@@ -738,8 +738,10 @@ label help_merchant():
 
     jump rival_scene
 
-label rival_scene:
-    return
+label rival_scene():
+    call rivalscene
+
+    "That wraps that up."
 
     
 # end game
