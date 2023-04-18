@@ -28,7 +28,7 @@ label day_two_travels():
     "A part of you considers ignoring it, but you know you’ll never forgive yourself if you left a person to die."
 
     menu:
-        "Stat check: martial [martial], charisma [charisma], patience [patience]."
+        "Your points: martial [martial], charisma [charisma], patience [patience]."
 
         "I'm no hero, just a man with decency in an indecent world.":
             jump bandits_fight
@@ -273,7 +273,7 @@ label bandits_rizz():
 
         "You strike a heroic pose."
 
-        mc "I am the emissary of justice! Hero of the land! The voice of the weak"
+        mc "I am the emissary of justice! Hero of the land! The voice of the weak!"
         mc "Scourge of the earth - harken my words: release your prisoner, or face my righteous wrath!"
         mc "It is I - the Maskless Rider!"
 
@@ -470,7 +470,7 @@ label getting_invitation():
     "Sunset is approaching, and you look at the emerging stars. You wonder if your family is looking at them as well."
 
     scene black with fade
-    
+
     "The wind whistles in your ears, and the grass rustles in its wake."
 
     return

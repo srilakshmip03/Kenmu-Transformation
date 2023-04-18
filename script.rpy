@@ -21,7 +21,7 @@ define exh = Character("Ex-Hostage")
 define tak = Character("Takayuki")
 
 
-define rival = Character("Shigefumi", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
+define rival = Character("Shigefumi", color="#a33131")
 
 ### reputation variables ###
 default fisherman = 0
@@ -62,7 +62,7 @@ screen character_select():
     frame:
         xfill True
         yfill True
-        background "#ffddb7"
+        background "#7f766c"
         hbox:
             xalign 0.5
             yalign 0.5
@@ -71,8 +71,8 @@ screen character_select():
             for butt in characters:
                 button:
                     size_group "character_buttons"
-                    background "#2d2522"
-                    hover_background "#963"
+                    background "#c3bbb2"
+                    hover_background "#9e8f7f"
                     vbox:
                         add butt["picture"]
                         label butt["name"]:
@@ -127,29 +127,34 @@ label start():
 
 label house():
 
-    show black
+    show backg:
+        zoom 2
 
     show screen actOne
+    window hide
     pause
     hide screen actOne with fade
 
+    show backg:
+        zoom 2
     show screen dayOne
+    window hide
     pause
-    hide screen dayOne with fade
+    hide screen dayOne
 
-    show black
+    scene black with fade
 
     "Typically, there are several ways you wake up in the morning."
     "Father giving three self-assured raps at the door. Somehow this always immediately snaps your mind to attention."
-    "Your brother Yasumaru ignoring the concept of knocking all together, barreling into your sleeping form, unkempt fabric catching light as he hurriedly reminds you of the events that day… as if you hadn’t already been aware of them."
+    "Your brother Yasumaru ignoring the concept of knocking all together, barreling into your sleeping form, unkempt fabric catching light."
+    "He hurriedly reminds you of the events that day… as if you hadn’t already been aware of them."
     "Your sister Masako running across the wood floors, unceremoniously knocking that worn down sword into your bedroom wall as she passes."
     "You silently listen for signs of life…"
     "…before concluding that this would indeed be a special morning."
     "Light footsteps echo as you shuffle outside, where your family is dining."
 
 
-    scene 
-    show bg home with fade:
+    scene bg home with fade:
         zoom 1.5
 
     show brother at left with moveinleft
@@ -183,8 +188,7 @@ label house():
     show black with fade
     # play sound "cutlery.mp3"
 
-    scene
-    show bg home with fade:
+    scene bg home with fade:
         zoom 1.5
 
     show father at right zorder 3
@@ -280,8 +284,7 @@ label help_fisherman():
     bro "Yeah! Scaring them right into our hands."
 
     menu:
-        "Stat check: patience is [patience]"
-        "Start trying to catch fish.":
+        "Start trying to catch fish. You have [patience] patience points.":
             pass
 
     if patience > 5:
@@ -339,8 +342,7 @@ label help_fisherman():
     jump rival_scene
 
 label help_archer():
-    scene 
-    show bg hills with fade:
+    scene bg hills with fade:
         zoom 1.5
 
     show brother at left with hpunch
@@ -453,7 +455,7 @@ label help_archer():
     arch "Make that two."
 
     menu:
-        "Stat check: martial is [martial]"
+        "Begin practicing. You have [martial] points."
         "Aim carefully at the practice target, and shoot.":
             pass
 
@@ -465,7 +467,8 @@ label help_archer():
         "Suekuni nods in approval, and a part of you ferociously yells out inside. A warrior’s son, indeed!"
     else:
         $martial += 1
-        "The gods, it seemed, are not in your corner today. You thought the angle and technique had been good enough to at least graze the tree, but the arrow swerved around it and instead decided to kiss a pair of bushes. You blush, hoping nobody else saw it."
+        "The gods, it seemed, are not in your corner today. You thought the angle and technique had been good enough to at least graze the tree..."
+        "But the arrow swerved around it and instead decided to kiss a pair of bushes. You blush, hoping nobody else saw it."
         "Sadly, Yasumaru’s giggling confirms the opposite. From the corner of your eye, Suekuni frowns and mumbles something. You’re not as angry at him as you are of yourself. Masako looks at you with pity."
         "You go back to practicing, trying to ignore, yet you can’t shake off the feeling that this won’t be the first time you’ll miss."
 
@@ -473,11 +476,10 @@ label help_archer():
     hide brother
     hide sister
 
-    show black with fade
-
     scene bg hills with fade
 
-    "After what seems like hours, you and your siblings are finally told to stop. In empathy, you and Masako decide to share Yasumaru’s extra hours. Everyone is exhausted, and your fingers feel like they’ve gone to the eight hot Naraka Hells."
+    "After what seems like hours, you and your siblings are finally told to stop. In empathy, you and Masako decide to share Yasumaru’s extra hours."
+    "Everyone is exhausted, and your fingers feel like they’ve gone to the eight hot Naraka Hells."
     "Suekuni offers everyone a drink of water, and you’re too exhausted to drink.  He opens your mouth and pours water in. You can’t even complain."
 
     show sister at left
@@ -497,7 +499,8 @@ label help_archer():
     arch "I’m proud to say that Niyama is the pride of Kanto when it comes to archers. You’ve seen many around - you know the wonder of a shot from Kawashima, for example."
     arch "That man could surpass me if he didn’t sleep all day."
     arch "Sadly, when the late lord levied us to honor the call of the Hojo, too many winters had passed for me to go with them."
-    arch "Can you imagine that? To spend a lifetime training for a moment like that, and just when it feels like I shall happen to live in a period where no great war happens, the emperor and the Hojo decide to settle things."
+    arch "Can you imagine that?"
+    arch "To spend a lifetime training for a moment like that, and just when it feels like I shall happen to live in a period where no great war happens, the emperor and the Hojo decide to settle things."
     arch "Niyama’s contingent was small, for we are no great city. But its sons proved to the realm our worth. Rumor is Fukuyama downed a Sugawara general with one arrow."
     arch "Our lord fell in battle. I remember the day we received the news. We were in shock. A shadow we dreaded to see covered the village."
     arch "And the emperor decided to give your father, who switched allegiances, this village. I can only wonder the next time we are called for battle. A hundred years? Two?"
@@ -512,14 +515,14 @@ label help_archer():
     jump rival_scene
 
 label help_merchant():
-    scene 
-    show bg street with fade:
+    scene bg street with fade:
         zoom 1.5
 
     "You decide it best to assist Nagamoto in his endeavors. After all, there’d be no better way to learn of the current happenings outside the village than by visiting the eccentric merchant."
     "Hearing your decision, Yasumaru leaps for joy, stomping his worn-down waraji on the rocky terrain."
     "You all arrive quickly to the shop, a cluttered place built using wooden shelves which contain all sorts of novel trinkets - some even distinctly Chinese!"
-    "Being in the center of town provides easy access for villagers and traders alike to browse the expansive selection. The front door is wide open which surprises you, knowing how particular Nagamoto is."
+    "Being in the center of town provides easy access for villagers and traders alike to browse the expansive selection."
+    "The front door is wide open which surprises you, knowing how particular Nagamoto is."
     "You stall by the entryway, spotting a steady pair of gleaming yellow eyes staring from the shelf directly opposite your position. This, of course, prompts Masako to gleefully walk inside."
 
     show sister at left with moveinleft
@@ -622,7 +625,7 @@ label help_merchant():
     "You know what he’s trying to say: don’t mess this up for me!"
 
     menu:
-        "Stat check: charisma is [charisma]"
+        "Take charge of the situation. You have [charisma] charisma points."
         "Walk forward, thinking about what to say.":
             pass
 
@@ -769,8 +772,7 @@ label help_merchant():
 label rival_scene():
     call rivalscene
 
-    scene 
-    show bg rival:
+    scene bg rival:
         zoom 1.5
     show rival zorder 3
 
@@ -797,8 +799,7 @@ label rival_scene():
     "‘I cannot let this happen’ is the conclusion you come to as you approach your lantern-lit house."
     "Your siblings don’t say a word, but you can feel the worry emanating off of them all the same."
 
-    scene 
-    show bg home with fade:
+    scene bg home with fade:
         zoom 1.5
 
     "You quickly take your shoes off and open the door."
@@ -949,6 +950,7 @@ label departure():
     jump day_two
 
 screen dayTwo:
+
     text "Day Two":
         align(0.5, 0.5)
 
@@ -956,11 +958,13 @@ init python:
     config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('dayTwo')))
 
 label day_two():
-    show black
+    show backg:
+        zoom 2
 
     show screen dayTwo
+    window hide
     pause
-    hide screen dayTwo with fade
+    hide screen dayTwo
  
     scene bg home with fade:
         zoom 1.5
@@ -1086,20 +1090,19 @@ label day_two():
     call getting_invitation
     jump continuation
 
-label continuation():
-    screen tbc:
-    text "Act Two: to be continued...":
+screen tbc:
+    text "To be continued...":
         align(0.5, 0.5)
 
-    init python:
-        config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('tbc')))
+init python:
+    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('tbc')))
 
-        show black
+label continuation():
+        scene backg:
+            zoom 2
 
         show screen tbc
         pause
-        hide screen tbc with fade
-
 # end game
 return
 

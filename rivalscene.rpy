@@ -59,7 +59,7 @@ label rivalscene():
     hide brother
 
     menu:
-        "Stat check: martial [martial], charisma [charisma], patience [patience]."
+        "Your points: martial [martial], charisma [charisma], patience [patience]."
 
         "There has never been a protracted war from which a country has benefited.":
             jump rivalfight
@@ -145,7 +145,8 @@ label rivalfight():
     return
 
 label rivalrizz():
-    scene bg rival with fade
+    scene bg rival with fade:
+        zoom 1.5
 
     if charisma > 7:
         mc "Did you come here to fight? To kill me?"
@@ -227,7 +228,8 @@ label rivalrizz():
     return
 
 label rivalpatience():
-    scene bg rival with fade
+    scene bg rival with fade:
+        zoom 1.5
 
     "I could fight him. Or argue with him."
 
