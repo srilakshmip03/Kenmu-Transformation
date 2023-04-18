@@ -32,7 +32,6 @@ default merchant = 2
 ### skill variables ###
 default patience = 0
 default martial = 0
-default erudition = 0
 default charisma = 0
 
 
@@ -41,19 +40,19 @@ default charisma = 0
 define characters = [
     {
         "name": "The Warrior",
-        "picture": "images/choiceone.jpeg"
+        "picture": "images/sword.png"
     },
     {
         "name": "The Diplomat",
-        "picture": "images/choicetwo.jpeg"
+        "picture": "images/handshake.png"
     },
     {
         "name": "The Sage",
-        "picture": "images/choiceone.jpeg"
+        "picture": "images/hourglass.png"
     },
     {
         "name": "The Scholar",
-        "picture": "images/choicetwo.jpeg"
+        "picture": "images/sroll.png"
     }
 ]
 
@@ -78,6 +77,7 @@ screen character_select():
                         label butt["name"]:
                             text_size 40
                             text_color "#FFF"
+                            
                     action Return(butt["name"])
 
 
