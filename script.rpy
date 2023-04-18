@@ -7,12 +7,19 @@ define bro = Character("Yasumaru")
 define dad = Character("Father")
 define fish = Character("Akiyoshi")
 define merch = Character("Nagamoto")
+define arch = Character("Suekuni")
 
 define unknown = Character("???")
-define arch = Character("Suekuni")
 
 define sold = Character("Soldier")
 define osold = Character("Other Soldier")
+define b1 = Character("Bandit")
+define b2 = Character("Bandit 2")
+define b3 = Character("Bandit 3")
+define ret = Character("Retainer")
+define exh = Character("Ex-Hostage")
+define tak = Character("Takayuki")
+
 
 define rival = Character("Shigefumi", color="#F00", who_outlines=[(3, "#000000", 1, 1)])
 
@@ -141,7 +148,9 @@ label house():
     "Light footsteps echo as you shuffle outside, where your family is dining."
 
 
-    scene bg home with fade
+    scene 
+    show bg home with fade:
+        zoom 1.5
 
     show brother at left with moveinleft
 
@@ -174,7 +183,9 @@ label house():
     show black with fade
     # play sound "cutlery.mp3"
 
-    scene bg home
+    scene
+    show bg home with fade:
+        zoom 1.5
 
     show father at right zorder 3
     show sister at left zorder 2
@@ -231,7 +242,9 @@ label house():
             jump help_merchant
 
 label help_fisherman():
-    scene bg river with fade
+    scene bg river with fade:
+        zoom 1.5
+
     show fisherman
 
     fish "Still got it after all these years!"
@@ -326,13 +339,15 @@ label help_fisherman():
     jump rival_scene
 
 label help_archer():
-    scene bg hills with fade
+    scene 
+    show bg hills with fade:
+        zoom 1.5
 
     show brother at left with hpunch
 
     bro "-AHHH!"
 
-    show sister at right with hpunch
+    show sister at right
 
     sis "AAH! What is it?!"
 
@@ -497,7 +512,9 @@ label help_archer():
     jump rival_scene
 
 label help_merchant():
-    scene bg street with fade
+    scene 
+    show bg street with fade:
+        zoom 1.5
 
     "You decide it best to assist Nagamoto in his endeavors. After all, there’d be no better way to learn of the current happenings outside the village than by visiting the eccentric merchant."
     "Hearing your decision, Yasumaru leaps for joy, stomping his worn-down waraji on the rocky terrain."
@@ -752,7 +769,9 @@ label help_merchant():
 label rival_scene():
     call rivalscene
 
-    scene bg rival
+    scene 
+    show bg rival:
+        zoom 1.5
     show rival zorder 3
 
     "As Shigefumi turns to leave, he spits out one last remark."
@@ -778,7 +797,9 @@ label rival_scene():
     "‘I cannot let this happen’ is the conclusion you come to as you approach your lantern-lit house."
     "Your siblings don’t say a word, but you can feel the worry emanating off of them all the same."
 
-    scene bg home with fade
+    scene 
+    show bg home with fade:
+        zoom 1.5
 
     "You quickly take your shoes off and open the door."
 
@@ -864,10 +885,14 @@ label rival_scene():
         "Heed his request and head to your room.":
             pass
 
+    hide sister with moveoutleft
+    hide father with moveoutright
+
     jump departure
 
-label departure():
-    scene bg home with fade
+label departure(): 
+    show bg home with fade:
+        zoom 1.5
 
     "As you ponder over which clothes would be the most practical for the journey, you hear a knock on your door."
     show brother at left with moveinleft
@@ -936,8 +961,9 @@ label day_two():
     show screen dayTwo
     pause
     hide screen dayTwo with fade
-
-    scene bg home with fade
+ 
+    scene bg home with fade:
+        zoom 1.5
 
     "You awake the next morning to a knock on the door."
     "Getting up was difficult after yesterday’s sleep in, but you manage anyway."
@@ -1052,14 +1078,36 @@ label day_two():
 
     "You hop on your new companion Ma, and head to the main road leading out of the village."
 
-    hide sister with fade
-    hide brother with fade
-    hide father with fade
-    show black with fade
+    scene black with fade
 
     "Heart pounding with hands gripping tightly onto the reins, you leave your village alone for the first time."
 
+    call day_two_travels
+    call getting_invitation
+    jump continuation
 
+label continuation():
+    screen tbc:
+    text "Act Two: to be continued...":
+        align(0.5, 0.5)
+
+    init python:
+        config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('tbc')))
+
+        show black
+
+        show screen tbc
+        pause
+        hide screen tbc with fade
 
 # end game
 return
+
+
+
+
+
+
+
+
+

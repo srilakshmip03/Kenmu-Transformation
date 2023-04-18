@@ -1,5 +1,6 @@
 label rivalscene():
-    scene bg rival with fade
+    scene bg rival with fade:
+        zoom 1.5
 
     "You didn’t realize how dark it was getting as you steadily walked home, siblings trailing behind you."
     "For some reason, you felt a chill pass within you despite the warm evening air." 
@@ -224,7 +225,6 @@ label rivalrizz():
         $charisma -= 1
 
     return
-
 
 label rivalpatience():
     scene bg rival with fade
