@@ -81,6 +81,13 @@ screen actOne:
 init python:
     config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('actOne')))
 
+screen dayOne:
+    text "Day One":
+        align(0.5, 0.5)
+
+init python:
+    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('dayOne')))
+
 # The game starts here.
 label start():
     call screen character_select
@@ -114,10 +121,15 @@ label start():
 label house():
 
     show black
+
     show screen actOne
     pause
-
     hide screen actOne with fade
+
+    show screen dayOne
+    pause
+    hide screen dayOne with fade
+
     show black
 
     "Typically, there are several ways you wake up in the morning."
@@ -484,7 +496,6 @@ label help_archer():
 
     jump rival_scene
 
-
 label help_merchant():
     scene bg street with fade
 
@@ -741,8 +752,314 @@ label help_merchant():
 label rival_scene():
     call rivalscene
 
-    "That wraps that up."
+    scene bg rival
+    show rival zorder 3
+
+    "As Shigefumi turns to leave, he spits out one last remark."
+
+    rival "You’ll regret having come here once I get my claim recognized at Kyoto."
+
+    "Shock paralyzes you as you realize what he just said."
+
+    show sister at left zorder 2
+    sis "Claim? What claim?"
+
+    "She has a certain disconnected look on her face which you find odd."
+    "But that can wait until later. You don’t feel safe anymore."
+    "You gesture for Yasumaru and Masako to follow you as you make a beeline for home."
+
+    hide rival with moveoutright
+
+    mc "We’ve got to tell Father!"
+
+    "While setting a quick enough pace for your siblings to follow, you get to thinking."
+    "Claim? Could he be bluffing? What does this mean for our family?"
+    "Thoughts rattle around your brain until nervousness properly sets in."
+    "‘I cannot let this happen’ is the conclusion you come to as you approach your lantern-lit house."
+    "Your siblings don’t say a word, but you can feel the worry emanating off of them all the same."
+
+    scene bg home with fade
+
+    "You quickly take your shoes off and open the door."
+
+    mc "Father-"
+
+    show father at right zorder 3
+    with moveinright
+
+    dad "You're all back!"
+
+    "He was meditating. You feel guilt wash over you as you think of how to word what just transpired."
+
+    dad "You all seem nervous… What happened today?"
+
+    show sister at left with moveinleft
+
+    sis "We met Fukataka Shigefumi on the road back home from helping the villagers."
+    sis "He seemed.. angrier than usual."
+
+    bro "You study his face that much? Gross."
+
+    mc "He said he’s going to get his claim recognized at the capitol."
+    mc "I don’t know when or how, but he seemed… genuine about it."
+    mc "Like it wasn’t a threat, more of a… promise."
+
+    "Father was silent. You stare down at the floor, not being able to bear looking at him."
+    "When you glance back up, you notice his face seems… resigned."
+    "And the fatigue is back in full force."
+
+    dad "I knew tensions were high with that family. The way his mother looks at me in the street…"
+    dad "You must go to Kyoto."
+
+    show bg home with hpunch
+
+    "...What?"
+
+    bro "What?" 
+    sis "Huh?"
+
+    dad "This is the only way."
+    dad "If he takes this claim all the way to the top, then our land rights could be ripped away from us."
+    dad "We obtained our position in the village through the emperor’s will, and by his will it can be taken away."
+    dad "Legally, all that stands between us now and us left destitute is the emperor’s humoring."
+    dad "He’s unlikely to even remember me."
+    dad "If that boy somehow convinces the emperor that he would be a better, more loyal servant..."
+    dad "There’s nothing that can stop it."
+    dad "Unless, of course, there is someone in Kyoto that can defend us."
+    dad "Until the government regains stability, we can’t be too careful about things."
+    dad "I’ll give you enough supplies and advice as you need, but you must leave tomorrow."
+    dad "You must ensure that our claim is the only one recognized."
+
+    "You're stunned."
+    "Father looks like he's aged a hundred years, and his voice has dried in anxiety."
+    "You can but share that fear."
+    "The adrenaline is helping you understand your father better, though."
+    "You must do whatever it takes for your family."
+
+    bro "I'm so excited!"
+    sis "I wonder if I can test my skills on real soldiers!"
+
+    "Father gives them a look, and you feel a weight drop in your stomach."
+
+    dad "Marokore must do this on his own."
+    dad "More of you will be… risky. I need you here, where you’ll be safe."
+
+    "Yasumaru and Masako instantly deflate."
+    "You feel torn. On one hand, this would be the first time ever separated from your family."
+    "Even when Father was fighting, you three were under the care of your grandparents."
+    "But Japan didn’t feel safe lately, and you worried that bringing them along would only endanger them."
+
+    sis "Okay..."
+
+    bro "I never get to go out to explore."
+
+    sis "You get to explore the village!"
+    
+    bro "Still..."
+
+    dad "Kyoto isn’t going anywhere. When you’re older, we’ll all take a trip there."
+    dad "Right now, Marokore needs rest, however, so let’s all retire for the night."
+
+    menu:
+        "Heed his request and head to your room.":
+            pass
+
+    jump departure
+
+label departure():
+    scene bg home with fade
+
+    "As you ponder over which clothes would be the most practical for the journey, you hear a knock on your door."
+    show brother at left with moveinleft
+
+    bro "Hey, Marokore."
+
+    mc "Yasumaru? Are you okay?"
+
+    bro "Could I.. come in?"
+
+    "You gesture for him to enter, carefully watching his expression."
+
+    "It’s rare for your brother to be so quiet outside of complying with Father’s requests."
+    show brother at center with move
 
     
+    "He walks forward, stopping in the middle of the room."
+    "You notice him fiddling restlessly with the sleeve of his sleeping robe."
+
+    bro "About Mother..."
+
+    mc "Yasumaru. It's okay."
+
+    bro "No, I… I was just thinking about what Suekuni said today. When he shot that arrow above me."
+
+    mc "You never intended for her to die. How could you have?"
+
+    bro "I know I didn’t. It’s just, it feels like what he said was a demonstration of how a lot of people see me in this village."
+    bro "You knew Mother too, but you don’t see me in that way. You’re kind to me, and you want to support me."
+
+    mc "As does Father."
+
+    bro "Sometimes it feels like he supports me {i}too{/i} much."
+    bro "My point in all this is, please come back. Safe."
+
+    mc "You don’t need to worry about me."
+    mc "I’ll be home before you know it, and with a legitimate claim that Shigefumi can’t deny."
+
+    "Yasumaru runs up and hugs you tightly. You cherish this rare moment with him."
+
+    mc "It's late. You should get to bed."
+
+    bro "You too."
+
+    show black with fade
+
+    "He leaves."
+    "You finish picking out clothes for the trip and quickly fall asleep."
+    "You don’t exactly remember afterwards, but you think you dreamt of doves flying and the clashing of swords."
+    "As you try to sleep, you recall once telling Mom you wanted to become a seagull, and fly all over Japan."
+    "It feels like divine mocking to be able to explore Japan now..."
+    "...but alone and with the burden of the family’s future weighing on your shoulders."
+
+    jump day_two
+
+screen dayTwo:
+    text "Day Two":
+        align(0.5, 0.5)
+
+init python:
+    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('dayTwo')))
+
+label day_two():
+    show black
+
+    show screen dayTwo
+    pause
+    hide screen dayTwo with fade
+
+    scene bg home with fade
+
+    "You awake the next morning to a knock on the door."
+    "Getting up was difficult after yesterday’s sleep in, but you manage anyway."
+    "Your sister is there to greet you."
+
+    show sister at left with moveinleft
+    sis "Marokore! The time has come."
+
+    mc "Hey, it sure has. How are you feeling?"
+
+    "You can tell she’s jealous, she’s not very good at hiding it."
+
+    sis "Ohhhh I’m good, ya know! Love this village, love it so much I may die here."
+
+    mc "You’ll have the chance to travel at some point! There’s much to see out there that’s waiting for you."
+
+    sis "Yasumaru also wants to come. I really think Father’s being too strict on us."
+
+    mc "Whatever you may think, his rules are the rules. I’m very sorry though, Masako."
+
+    sis "It’s alright. Like you said, I’ll be able to travel when I’m older."
+    sis "By that point, I’ll be trained as a warrior!"
+
+    "As she lifts her arms up in a mock fighting stance, you’re able to see the famed wooden sword hiding once again in her robes."
+    "She lowers them once more to speak."
+
+    sis "Father’s outside waiting for you. He asked me to get you."
+
+    mc "Thank you. Come say goodbye."
+
+    "You take a moment to yourself to dress in the day’s clothing, stretching a bit to make sure they fit nicely."
+    "Then you and Masako head outside the house, Yasumaru trailing behind you both."
+
+    show father at right with moveinright
+    "Father’s waiting there by a gray horse with various pouches and bags attached to its saddle."
+    "As he spots you all, he smiles softly."
+
+    dad "Thank you for retrieving him, Masako."
+    dad "How are you feeling, Marokore? I made sure to pack extra food and water, as it has…"
+    dad "...been a while since I made this trip. My memory gets rusty, after all."
+
+    "He laughed softly. You commit its sound to memory."
+
+    mc "I’m ready, Father! Slept well, and I’m feeling strong enough."
+
+    dad "Very good. This is Ma."
+    "He gestures to the horse."
+
+    mc "The horse is named horse?"
+
+    dad "Your old man has never been the best at naming things, I’m afraid."
+
+    "Another laugh. Father’s spirits are higher than they usually are. It’s very nice to see."
+
+    dad "Don’t worry, I’ve packed some armor on Ma, so you’ll be safe."
+
+    mc "Wait, do you mean yours? I can’t! It’s too valuable to risk it…"
+
+    dad "You’re more valuable than some pieces of metal."
+    dad "Take your sword and bow with you at the ready."
+    dad "Those akuto and bandits shouldn’t dare to strike at an obviously trained Bushi, but you shouldn’t risk it."
+    dad "Keep your eyes wide open. Especially when you’re preoccupied with your… business."
+
+    mc "Father!"
+
+    dad "Oh, I’m sorry, did I embarrass you?"
+
+    mc "No, no! It’s just…"
+
+    dad "I understand."
+    dad "When I went to war, I feared every day would be my last. I was always thinking of you three."
+    dad "What would your mother think of me dying so far away from you?"
+    dad "Whatever happens, stay safe."
+    dad "Our titles, our land, all of that is inconsequential compared to your wellbeing."
+    dad "Don’t ever forget that."
+
+    "You can’t say anything. Instead, you hug him, trying not to tear up."
+
+    show sister at left zorder 3
+    show brother zorder 2:
+        xalign 0.4
+        yalign 1.0
+
+    show father at right with hpunch
+
+    "Suddenly, Yasumaru and Masako both barrel into you from behind, hugging you tightly."
+
+    mc "Ack-!"
+
+    bro "Come home safe, Marakore. Please!"
+
+    sis "Won’t be nearly as fun around here without you! Especially with just this runt."
+
+    bro "Hey!"
+
+    "You smile as they continue arguing while holding on to you."
+    "But you eventually separate away from them and take the reins from Father."
+
+    dad "The journey will be long. Don’t lose sight of your goal."
+
+    "You take a moment to bow deeply to him."
+
+    mc "I would never. I’ll see you soon, Father."
+
+    dad "Safe travels, my son."
+    dad "And if you run into Shigefumi on the road, try talking with him. See if you can’t change his mind at all."
+
+    mc "I'll do my best."
+
+    "You weren’t sure how realistic that would be."
+    "But you put that thought to the side for now and say proper goodbyes to your family."
+
+    "You hop on your new companion Ma, and head to the main road leading out of the village."
+
+    hide sister with fade
+    hide brother with fade
+    hide father with fade
+    show black with fade
+
+    "Heart pounding with hands gripping tightly onto the reins, you leave your village alone for the first time."
+
+
+
 # end game
 return

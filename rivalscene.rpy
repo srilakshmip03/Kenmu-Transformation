@@ -58,6 +58,7 @@ label rivalscene():
     hide brother
 
     menu:
+        "Stat check: martial [martial], charisma [charisma], patience [patience]."
 
         "There has never been a protracted war from which a country has benefited.":
             jump rivalfight
