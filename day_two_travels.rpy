@@ -360,7 +360,7 @@ label getting_invitation():
     "He turns to you and gives a curt bow."
 
     exh "Oh, please forgive me for my late greeting. I was a bit preoccupied."
-    tak "My name is Takauyuki, pleased to meet you."
+    exh "My name is Takauyuki, pleased to meet you."
 
     "After a mental hiccup, Father’s etiquette lessons come crashing back. You bow deeply."
 

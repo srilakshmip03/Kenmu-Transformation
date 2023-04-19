@@ -33,7 +33,6 @@ default merchant = 2
 default patience = 0
 default martial = 0
 default charisma = 0
-default erudition = 0
 
 
 ### character select screen ###
@@ -285,9 +284,7 @@ label help_fisherman():
     bro "Yeah! Scaring them right into our hands."
 
     menu:
-        "You step up and take a deep breath. You have [patience] patience points."
-
-        "Try to catch some fish.":
+        "Start trying to catch fish. You have [patience] patience points.":
             pass
 
     if patience > 5:
@@ -773,7 +770,7 @@ label help_merchant():
     jump rival_scene
 
 label rival_scene():
-    call rivalscene from _call_rivalscene
+    call rivalscene
 
     scene bg rival:
         zoom 1.5
@@ -961,7 +958,7 @@ init python:
     config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('dayTwo')))
 
 label day_two():
-    show backg with fade:
+    show backg:
         zoom 2
 
     show screen dayTwo
@@ -1089,8 +1086,8 @@ label day_two():
 
     "Heart pounding with hands gripping tightly onto the reins, you leave your village alone for the first time."
 
-    call day_two_travels from _call_day_two_travels
-    call getting_invitation from _call_getting_invitation
+    call day_two_travels
+    call getting_invitation
     jump continuation
 
 screen tbc:

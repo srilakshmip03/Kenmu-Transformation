@@ -149,6 +149,8 @@ label rivalrizz():
         zoom 1.5
 
     if charisma > 7:
+        show rival
+
         mc "Did you come here to fight? To kill me?"
         mc "I hope you’re prepared to be punished by the law. The courts do not take kindly to murder."
 
@@ -175,6 +177,8 @@ label rivalrizz():
         $charisma += 3
 
     elif charisma > 4:
+        show rival
+
         mc "Why have you come here?"
 
         rival "I came here to gauge my father’s usurpers. Frankly, I’m not impressed."
@@ -201,6 +205,8 @@ label rivalrizz():
         $charisma += 2
 
     else: 
+        show rival
+
         mc "What do you want?"
 
         rival "I am here to reclaim my family’s honor! Our rightful land!"
@@ -231,6 +237,7 @@ label rivalpatience():
     scene bg rival with fade:
         zoom 1.5
 
+    show rival
     "I could fight him. Or argue with him."
 
     mc "Yasumaru, Masako, let’s go home."
@@ -255,6 +262,7 @@ label rivalpatience():
         $patience += 3
 
     else:
+        show rival
         "…What?"
         "Were you supposed to let that one go?"
         "What kind of son would let his father be insulted like that?"
