@@ -81,6 +81,19 @@ screen character_select():
                             
                     action Return(butt["name"])
 
+screen stats():
+    frame:
+        xfill True
+        yfill True
+        background "#7f766c"
+        vbox:
+            align (0.5, 0.5)
+
+            text "Martial: [martial]"
+            text "Charisma: [charisma]"
+            text "Patience: [patience]"
+            text "Erudition: [erudition]"
+
 
 screen actOne:
     text "Act One":
@@ -551,7 +564,7 @@ label help_merchant():
     "Right as he speaks, you hear the floorboards creak once again behind you."
     "You whip around to find the merchant staring wide-eyed at all three of you."
 
-    show merchnocat
+    show merchcat
 
     merch "…New cooking pot just came in."
     

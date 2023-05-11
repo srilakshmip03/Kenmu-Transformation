@@ -28,23 +28,9 @@ label day_two_travels():
     "A part of you considers ignoring it, but you know you’ll never forgive yourself if you left a person to die."
 
     menu:
-        "Your points: martial [martial], charisma [charisma], patience [patience]."
-
         "I'm no hero, just a man with decency in an indecent world.":
-            jump bandits_fight
-        "Approach them slowly. Words and morals shall triumph.":
-            jump bandits_rizz
-        "Circle around them; a new angle could be key.":
-            jump bandits_circ
+            pass
 
-screen deathScr:
-    text "You died.":
-        align(0.5, 0.5)
-
-init python:
-    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('deathScr')))
-
-label bandits_fight():
     "You disembark Ma, and after tying him to a nearby tree, you head off into the direction the sound came from."
     "You bring a bow and quiver in case it’s needed."
     "You also make sure to mark trees with an arrow as you pass them to make sure you know the way back."
@@ -67,9 +53,23 @@ label bandits_fight():
     "Bandits!"
 
     menu:
-        "Oh, bless me, Hachiman, god of war! Smite them!":
-            pass
+        "Your points: martial [martial], charisma [charisma], patience [patience]."
 
+        "Fight: Oh, bless me, Hachiman, god of war! Smite them!":
+            jump bandits_fight
+        "Talk: Approach them slowly. Words and morals shall triumph.":
+            jump bandits_rizz
+        "Hold Out: Circle around them; a new angle could be key.":
+            jump bandits_circ
+
+screen deathScr:
+    text "You died.":
+        align(0.5, 0.5)
+
+init python:
+    config.underlay.append(renpy.Keymap(mousedown_1=lambda: renpy.hide_screen('deathScr')))
+
+label bandits_fight():
     if martial > 4:
         "Let evil tremble!"
         "You quickly get into an archery position at a distance of around 10 meters, aim, and shoot at one of the bandits keeping watch."
@@ -284,9 +284,10 @@ label bandits_rizz():
 
         "In your final moments, you can but wish that maybe you needed better speech-writing skills."
 
+        show backg:
+            zoom 2
         show screen deathScr
         pause
-        hide screen deathScr with fade
 
         $renpy.full_restart()
 
@@ -360,7 +361,7 @@ label getting_invitation():
     "He turns to you and gives a curt bow."
 
     exh "Oh, please forgive me for my late greeting. I was a bit preoccupied."
-    exh "My name is Takauyuki, pleased to meet you."
+    exh "My name is Takayuki, pleased to meet you."
 
     "After a mental hiccup, Father’s etiquette lessons come crashing back. You bow deeply."
 

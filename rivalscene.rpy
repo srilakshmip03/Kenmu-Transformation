@@ -61,15 +61,16 @@ label rivalscene():
     menu:
         "Your points: martial [martial], charisma [charisma], patience [patience]."
 
-        "There has never been a protracted war from which a country has benefited.":
+        "Fight: There has never been a protracted war from which a country has benefited.":
             jump rivalfight
-        "The supreme art of war is to subdue the enemy without fighting.":
+        "Talk: The supreme art of war is to subdue the enemy without fighting.":
             jump rivalrizz
-        "He will win who knows when to fight and when not to fight.":
+        "Hold Out: He will win who knows when to fight and when not to fight.":
             jump rivalpatience
 
 label rivalfight():
-    scene bg rival with fade
+    scene bg rival with fade:
+        zoom 1.5
 
     if martial > 7:
         "You are a warrior. You give a nod, and rush at him while unsheathing your sword."
