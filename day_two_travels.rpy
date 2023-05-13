@@ -350,6 +350,8 @@ label bandits_circ():
 label getting_invitation():
     "As soon as the rope gagging his mouth hits the ground, the ex-hostage begins talking."
 
+    show hostage
+
     exh "What took you all so long? They were an inch away from slitting my throat!"
     exh "Why did I even hire you four?"
 
@@ -449,6 +451,8 @@ label getting_invitation():
 
     "With a haughty laugh, Takayuki dismisses me and walks out, following his guards who look at me apologetically."
     "The leader mouths thank you, and you nod to him in recognition."
+
+    hide hostage with moveoutright
 
     menu:
         "Return to Ma, following the tree trunks you had marked earlier.":

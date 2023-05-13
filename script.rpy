@@ -363,7 +363,7 @@ label help_archer():
 
     show brother at left with hpunch
 
-    bro "-AHHH!"
+    bro "AHHH!"
 
     show sister at right
 
